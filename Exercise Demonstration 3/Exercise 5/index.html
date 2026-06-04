@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 5 - Multi-Chart Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #global-tooltip {
+            position: fixed;
+            background: rgba(20, 20, 40, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: #fff;
+            padding: 14px 18px;
+            border-radius: 12px;
+            font-size: 13px;
+            line-height: 1.5;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            z-index: 9999;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 280px;
+        }
+        #global-tooltip strong {
+            color: #a5b4fc;
+            display: block;
+            margin-bottom: 4px;
+            font-size: 14px;
+        }
+        #global-tooltip .label {
+            color: #9ca3af;
+            font-size: 11px;
+        }
+        #global-tooltip .value {
+            color: #fff;
+            font-weight: 600;
+        }
+        #global-tooltip hr {
+            border: none;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin: 8px 0;
+        }
+        .click-hint {
+            font-size: 12px;
+            color: #9ca3af;
+            margin-top: 8px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div id="global-tooltip"></div>
+
+    <div class="dashboard-header">
+        <h1>Exercise 5: Multi-Chart Dashboard</h1>
+        <p class="intro-text">
+            Four distinct visualizations of TV energy consumption and historical power pricing data.
+            <br><span class="click-hint">Click any chart element for detailed summary</span>
+        </p>
+    </div>
+
+    <div class="dashboard-grid">
+        <div class="chart-box">
+            <h2>Energy Consumption vs Star Rating</h2>
+            <div id="scatter-plot" class="chart-container"></div>
+        </div>
+
+        <div class="chart-box">
+            <h2>Energy by Screen Technology</h2>
+            <div id="donut-chart" class="chart-container"></div>
+        </div>
+
+        <div class="chart-box">
+            <h2>55-Inch TVs Energy Consumption</h2>
+            <div id="bar-chart-55" class="chart-container"></div>
+        </div>
+
+        <div class="chart-box">
+            <h2>Spot Power Prices (1998-2024)</h2>
+            <div id="line-chart" class="chart-container"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+    <script src="js/scatterPlot.js"></script>
+    <script src="js/donutChart.js"></script>
+    <script src="js/barChart55.js"></script>
+    <script src="js/lineChartPrices.js"></script>
+    <script>
+        const globalTooltip = d3.select("#global-tooltip");
+
+        function showGlobalTooltip(event, content) {
+            event.stopPropagation();
+            globalTooltip.style("opacity", 1).html(content);
+            positionTooltip(event);
+        }
+
+        function positionTooltip(event) {
+            const node = globalTooltip.node();
+            const rect = node.getBoundingClientRect();
+            let left = event.clientX + 15;
+            let top = event.clientY - 10;
+            if (left + rect.width > window.innerWidth - 20) left = event.clientX - rect.width - 15;
+            if (top + rect.height > window.innerHeight - 20) top = event.clientY - rect.height - 10;
+            globalTooltip.style("left", left + "px").style("top", top + "px");
+        }
+
+        function hideGlobalTooltip() {
+            globalTooltip.style("opacity", 0);
+        }
+
+        window.addEventListener("click", function() { hideGlobalTooltip(); });
+
+        window.showGlobalTooltip = showGlobalTooltip;
+        window.hideGlobalTooltip = hideGlobalTooltip;
+        window.positionTooltip = positionTooltip;
+    </script>
+</body>
+</html>

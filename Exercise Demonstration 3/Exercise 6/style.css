@@ -1,0 +1,25 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); min-height: 100vh; padding: 20px; color: #fff; }
+.container { max-width: 1200px; margin: 0 auto; }
+.title-banner { text-align: center; margin-bottom: 20px; }
+.title-banner h1 { font-size: 1.8rem; margin-bottom: 5px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+.subtitle { color: #cbd5e1; font-size: 0.95rem; }
+.filters-container { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+.filter-btn { padding: 8px 18px; border: 2px solid rgba(255,255,255,0.25); border-radius: 20px; background: transparent; color: #e2e8f0; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.3s ease; }
+.filter-btn:hover { background: rgba(255,255,255,0.1); }
+.filter-btn.active { background: #4f46e5; border-color: #4f46e5; color: #fff; font-weight: 600; }
+.charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 1000px) { .charts-grid { grid-template-columns: 1fr; } }
+.chart-card { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+.chart-card h2 { text-align: center; font-size: 1rem; color: #1e293b; margin-bottom: 15px; font-weight: 600; }
+.chart-container { width: 100%; }
+.chart-container svg { display: block; width: 100%; height: auto; }
+.bar { fill: #4f46e5; }
+.bar:hover { opacity: 0.75; }
+.circle { stroke: #fff; stroke-width: 1px; }
+.circle:hover { opacity: 0.7; }
+.tick text { fill: #333; font-size: 11px; }
+.tick line { stroke: #ccc; }
+.domain { stroke: #333; }
+.tooltip-group text { font-size: 12px; fill: #fff; font-weight: 600; }
+.tooltip-group rect { fill: rgba(30,30,30,0.9); }

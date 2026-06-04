@@ -1,0 +1,92 @@
+/* Exercise 5 - Multi-Chart Dashboard */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #fff;
+}
+
+.dashboard-header h1 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.intro-text {
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+    color: #cbd5e1;
+    font-size: 1rem;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.chart-box {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.chart-box h2 {
+    font-size: 1.1rem;
+    color: #e0e0e0;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.chart-container {
+    width: 100%;
+    min-height: 400px;
+}
+
+.chart-container svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* D3 axis styling for dark theme */
+.x-axis path,
+.x-axis line,
+.y-axis path,
+.y-axis line {
+    stroke: #4a5568;
+}
+
+.x-axis text,
+.y-axis text {
+    fill: #e0e0e0;
+}
+
+@media (max-width: 900px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .chart-container {
+        min-height: 350px;
+    }
+}

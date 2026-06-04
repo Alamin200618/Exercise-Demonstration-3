@@ -1,0 +1,83 @@
+/* Exercise 4.3-4.6 & 4.5 - TV Brand Data Visualisation */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    color: #fff;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+}
+
+p {
+    color: #fff;
+    text-align: center;
+    max-width: 600px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* Exercise Selector Buttons */
+.exercise-selector {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.3);
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.btn.active {
+    background: #fff;
+    color: #667eea;
+}
+
+/* Responsive container */
+.responsive-svg-container {
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+    max-width: 1200px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.responsive-svg-container svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Bar chart styling */
+.bar {
+    stroke: #333;
+    stroke-width: 1px;
+}
+
+.bar:hover {
+    opacity: 0.8;
+}

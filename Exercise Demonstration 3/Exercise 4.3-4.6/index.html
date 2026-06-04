@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 4.3-4.6 - TV Brand Data Visualisation</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f7fa;
+        }
+        h1 {
+            text-align: center;
+            color: #1a1a2e;
+            margin-bottom: 20px;
+        }
+        .exercise-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .exercise-selector .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            background: #e2e8f0;
+            color: #475569;
+            transition: all 0.2s ease;
+        }
+        .exercise-selector .btn:hover {
+            background: #cbd5e1;
+        }
+        .exercise-selector .btn.active {
+            background: #4f46e5;
+            color: white;
+        }
+        .desc {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        /* Exercise 4.6 Dashboard Styles */
+        .dashboard-container {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .filter-btn {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.2s ease;
+            color: white;
+        }
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .filter-btn.active {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transform: translateY(0);
+        }
+        .btn-all { background: #4f46e5; }
+        .btn-qled { background: #2563eb; }
+        .btn-oled { background: #7c3aed; }
+        .btn-led { background: #059669; }
+
+        .chart-container {
+            width: 100%;
+            overflow-x: auto;
+        }
+        #chart-46 {
+            display: block;
+            width: 100%;
+        }
+
+        .tooltip {
+            position: fixed;
+            background: linear-gradient(135deg, #1a1a2e 0%, #2d2d44 100%);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 10px;
+            font-size: 13px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            z-index: 1000;
+            min-width: 220px;
+        }
+        .tooltip.visible { opacity: 1; }
+        .tooltip-brand {
+            font-weight: 700;
+            font-size: 15px;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+        .tooltip-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 4px 0;
+        }
+        .tooltip-label { color: #a0a0b8; }
+        .tooltip-value { font-weight: 600; }
+
+        .responsive-svg-container {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+    </style>
+</head>
+<body>
+    <h1>Exercise 4.3-4.6 - TV Brand Data Visualisation</h1>
+
+    <!-- Exercise Selector -->
+    <div class="exercise-selector">
+        <button id="btn-43" class="btn active" onclick="showExercise43()">4.3</button>
+        <button id="btn-44" class="btn" onclick="showExercise44()">4.4</button>
+        <button id="btn-45" class="btn" onclick="showExercise45()">4.5</button>
+        <button id="btn-46" class="btn" onclick="showExercise46()">4.6</button>
+    </div>
+
+    <!-- Descriptions -->
+    <p id="desc-43" class="desc">Exercise 4.3: Create SVG bar chart manually using D3 scales (TV Market Share).</p>
+    <p id="desc-44" class="desc" style="display:none;">Exercise 4.4: Load data with screen technology info - QLED vs OLED colors.</p>
+    <p id="desc-45" class="desc" style="display:none;">Exercise 4.5: Data binding with selectAll().data().join() pattern with screen tech.</p>
+    <p id="desc-46" class="desc" style="display:none;">Exercise 4.6: Australian TV Market Dashboard - Interactive filtering with D3 transitions.</p>
+
+    <!-- SVG containers -->
+    <div id="container-43" class="responsive-svg-container"></div>
+    <div id="container-44" class="responsive-svg-container" style="display:none;"></div>
+    <div id="container-45" class="responsive-svg-container" style="display:none;"></div>
+
+    <!-- Exercise 4.6 Dashboard -->
+    <div id="container-46" style="display:none;">
+        <div class="dashboard-container">
+            <!-- Filter Buttons -->
+            <div class="filter-bar">
+                <button class="filter-btn btn-all active" onclick="filterData('all')">Show All</button>
+                <button class="filter-btn btn-qled" onclick="filterData('QLED')">QLED Tech</button>
+                <button class="filter-btn btn-oled" onclick="filterData('OLED')">OLED Tech</button>
+                <button class="filter-btn btn-led" onclick="filterData('LED')">Standard LED</button>
+            </div>
+            <!-- Chart Container -->
+            <div class="chart-container">
+                <div id="chart-46"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tooltip -->
+    <div id="tooltip" class="tooltip">
+        <div class="tooltip-brand"></div>
+        <div class="tooltip-row"><span class="tooltip-label">Market Share:</span><span class="tooltip-value" id="tt-share"></span></div>
+        <div class="tooltip-row"><span class="tooltip-label">Avg Price:</span><span class="tooltip-value" id="tt-price"></span></div>
+        <div class="tooltip-row"><span class="tooltip-label">Top State:</span><span class="tooltip-value" id="tt-state"></span></div>
+    </div>
+
+    <!-- D3.js v7 from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

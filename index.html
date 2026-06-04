@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Visualization Exercises Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .dashboard-header {
+            max-width: 1200px;
+            margin: 0 auto 40px;
+            text-align: center;
+        }
+        h1 {
+            color: #fff;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+        }
+        .subtitle {
+            color: #a0aec0;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .exercises-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .exercise-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 16px;
+            padding: 30px;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .exercise-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        .exercise-card:hover::before {
+            transform: scaleX(1);
+        }
+        .exercise-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+        }
+        .exercise-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: bold;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+        }
+        .exercise-card h2 {
+            color: #2d3748;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+        .exercise-card p {
+            color: #718096;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #718096;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-header">
+        <h1>Data Visualization Exercises</h1>
+        <p class="subtitle">Interactive dashboards and visualizations using D3.js, SVG, and modern web technologies</p>
+    </div>
+
+    <div class="exercises-grid">
+        <a href="Exercise 4.1/index.html" class="exercise-card">
+            <div class="card-icon">🏠</div>
+            <span class="exercise-number">Exercise 4.1</span>
+            <h2>SVG House and Garden</h2>
+            <p>Learn SVG basics with basic shapes, coordinates, styling, grouping, and path elements to create a house illustration.</p>
+        </a>
+
+        <a href="Exercise 4.3-4.6/index.html" class="exercise-card">
+            <div class="card-icon">📊</div>
+            <span class="exercise-number">Exercises 4.3-4.6</span>
+            <h2>D3.js Fundamentals</h2>
+            <p>Interactive D3.js visualizations including bar charts, line charts, scatter plots, and data binding techniques.</p>
+        </a>
+
+        <a href="Exercise 5/index.html" class="exercise-card">
+            <div class="card-icon">📈</div>
+            <span class="exercise-number">Exercise 5</span>
+            <h2>Multi-Chart Dashboard</h2>
+            <p>Four visualization types: scatter plot, donut chart, bar chart, and line chart displaying TV energy consumption data.</p>
+        </a>
+
+        <a href="Exercise 6/index.html" class="exercise-card">
+            <div class="card-icon">🔍</div>
+            <span class="exercise-number">Exercise 6</span>
+            <h2>Advanced Analytics</h2>
+            <p>Histogram and scatter plot analysis with interactive tooltips, brushing, and detailed data exploration.</p>
+        </a>
+    </div>
+
+    <p class="footer">Click any card to navigate to that exercise</p>
+</body>
+</html>
